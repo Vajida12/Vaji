@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration Form</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Container */
+    .form-container {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* Grid Form Layout */
+    form {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      padding-top: 8px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    /* Gender & Hobbies */
+    .gender,
+    .hobbies {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Submit Button */
+    .btn-container {
+      grid-column: span 2;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #333;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff9800;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+      .btn-container {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="form-container">
+    <h2>Student Registration</h2>
+    <form>
+      <!-- Name -->
+      <div><label for="name">Name:</label></div>
+      <div><input type="text" id="name" name="name" required></div>
+
+      <!-- Email -->
+      <div><label for="email">Email:</label></div>
+      <div><input type="email" id="email" name="email" required></div>
+
+      <!-- Gender -->
+      <div><label>Gender:</label></div>
+      <div class="gender">
+        <label><input type="radio" name="gender" value="male"> Male</label>
+        <label><input type="radio" name="gender" value="female"> Female</label>
+        <label><input type="radio" name="gender" value="other"> Other</label>
+      </div>
+
+      <!-- Hobbies -->
+      <div><label>Hobbies:</label></div>
+      <div class="hobbies">
+        <label><input type="checkbox" name="hobby" value="reading"> Reading</label>
+        <label><input type="checkbox" name="hobby" value="sports"> Sports</label>
+        <label><input type="checkbox" name="hobby" value="music"> Music</label>
+        <label><input type="checkbox" name="hobby" value="travel"> Travel</label>
+      </div>
+
+      <!-- Password -->
+      <div><label for="password">Password:</label></div>
+      <div><input type="password" id="password" name="password" required></div>
+
+      <!-- Submit -->
+      <div class="btn-container">
+        <button type="submit">Register</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
