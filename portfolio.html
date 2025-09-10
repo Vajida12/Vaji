@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vajida Dudekula | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #121212;
+      --card-bg: #1E1E1E;
+      --text: #EAEAEA;
+      --primary: #00E5FF; /* Neon Cyan */
+      --accent: #FF4081; /* Neon Pink */
+      --shadow: 0 4px 20px rgba(0, 229, 255, 0.15);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+    }
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: var(--card-bg);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+    .sidebar h1 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+    .sidebar p {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .sidebar nav a {
+      display: block;
+      margin: 0.8rem 0;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .sidebar nav a:hover {
+      color: var(--accent);
+    }
+    /* Main Content */
+    .main {
+      margin-left: 250px;
+      padding: 2rem;
+      width: calc(100% - 250px);
+    }
+    .section-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 0.5rem;
+    }
+    /* About */
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+    }
+    .about-img {
+      flex: 1 1 200px;
+      max-width: 200px;
+      margin-right: 2rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--primary);
+    }
+    .about-img img {
+      width: 100%;
+      display: block;
+    }
+    .about-text {
+      flex: 2 1 300px;
+    }
+    /* Skills */
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .skill-card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      font-weight: 600;
+      color: var(--primary);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .skill-card:hover {
+      transform: translateY(-5px);
+      background: var(--accent);
+      color: #fff;
+    }
+    /* Projects */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+    .project-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 28px rgba(255,64,129,0.15);
+    }
+    .project-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .project-content {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .project-title {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .project-link {
+      align-self: flex-start;
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 0.5rem;
+    }
+    .project-link:hover {
+      color: var(--accent);
+    }
+    /* Contact */
+    form {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: var(--shadow);
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #333;
+      border-radius: 4px;
+      background: #222;
+      color: var(--text);
+    }
+    form button {
+      background: var(--primary);
+      color: #000;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    form button:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    @media(max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .main {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <h1>Vajida Dudekula</h1>
+    <p>Frontend Developer</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <section id="about" class="about">
+      <div class="about-img">
+        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Vajida Dudekula">
+      </div>
+      <div class="about-text">
+        <h2 class="section-title">About Me</h2>
+        <p>
+          Hello! I'm Vajida a frontend developer who loves crafting sleek, responsive, and inclusive web apps. My passion lies in making the web accessible for everyone, while pushing the boundaries of UI design.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills">
+        <div class="skill-card">HTML5</div>
+        <div class="skill-card">CSS3 / Sass</div>
+        <div class="skill-card">JavaScript (ES6+)</div>
+        <div class="skill-card">React.js</div>
+        <div class="skill-card">python</div>
+        <div class="skill-card">Git & GitHub</div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects">
+        <div class="project-card">
+          <img class="project-img" src="https://images.unsplash.com/photo-1542831371-d2182061405e?auto=format&fit=crop&w=400&q=80" alt="Accessibility Blog">
+          <div class="project-content">
+            <div>
+              <div class="project-title">Accessible Blog Platform</div>
+              <p>A blog app built with ARIA and keyboard navigation support, ensuring inclusivity for all users.</p>
+            </div>
+            <a href="#" class="project-link">View Project</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img class="project-img" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80" alt="Data Dashboard">
+          <div class="project-content">
+            <div>
+              <div class="project-title">Interactive Data Dashboard</div>
+              <p>A Vue.js dashboard with real-time charts, filters, and smooth animations for analytics.</p>
+            </div>
+            <a href="#" class="project-link">View Project</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img class="project-img" src="https://images.unsplash.com/photo-1590283141127-14e3b7b6299c?auto=format&fit=crop&w=400&q=80" alt="E-commerce UI">
+          <div class="project-content">
+            <div>
+              <div class="project-title">Responsive E-commerce UI</div>
+              <p>A mobile-first e-commerce product page with modern CSS grid and flexbox design.</p>
+            </div>
+            <a href="#" class="project-link">View Project</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <footer>
+      © 2024 Alex Smith. All Rights Reserved.
+    </footer>
+  </main>
+</body>
+</html>
