@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<style>
+    body {
+        background-color: lightgrey;
+        font-family: calibri;
+    }
+    h1 {
+        color: orange;
+    }
+    p {
+        font-size: 20px;
+        font-weight: bold;
+        color: rgb(133, 219, 13);
+    }
+    #list {
+        list-style-type: none;
+        padding: 0;
+        max-width: 400px;
+        margin: auto;
+    }
+    #list li {
+        margin: 8px 0;
+        padding: 8px;
+        border-radius: 6px;
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .btn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    .undo {
+        background: orange;
+        color: white;
+    }
+    .undo:hover {
+        background: darkorange;
+    }
+    .complete {
+        background: green;
+        color: white;
+    }
+    .complete:hover {
+        background: darkgreen;
+    }
+</style>
+<body>
+    <h1> To Do List</h1>
+    <p>These are your tasks to be completed:</p>
+    
+    <ul id="list">
+        <li>Task 1 <button class="btn complete">Complete</button></li>
+        <li>Task 2 <button class="btn complete">Complete</button></li>
+        <li>Task 3 <button class="btn complete">Complete</button></li>
+    </ul>
+
+    <input type="text" id="myInput" placeholder="Enter new task">
+    <button id="add">Add Task</button>
+
+    <script>
+        $(document).ready(function(){
+            // Add new task
+            $("#add").click(function(){
+                let task = $("#myInput").val().trim();
+                if(task){
+                    $("#list").append('<li>'+ task +' <button class="btn complete">Complete</button></li>');
+                    $("#myInput").val("");
+                }
+            });
+
+            // Mark task as completed -> remove from list
+            $("#list").on("click", ".complete", function(){
+                let parentLi = $(this).parent();
+                parentLi.fadeOut(500, function(){
+                    $(this).remove();
+                });
+            });
+
+            // Optional: Undo button logic (if you want to restore last removed task)
+            // We’ll store last removed task
+            let lastRemoved = null;
+
+            $("#list").on("click", ".complete", function(){
+                lastRemoved = $(this).parent().clone();
+                $(this).parent().fadeOut(500, function(){
+                    $(this).remove();
+                });
+            });
+
+            // Add Undo button globally
+            $("body").append('<br><button id="undoBtn" class="btn undo">Undo Last Remove</button>');                                                                                                                                                                                                                                           
+
+            $("#undoBtn").click(function(){
+                if(lastRemoved){
+                    $("#list").append(lastRemoved);
+                    lastRemoved = null; // clear after restoring
+                } else {
+                    alert("No task to undo!");
+                }
+            });
+        });
+    </script>
+</body> 
+</html>

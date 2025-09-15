@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Joke Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background: #f4f4f9;
+    }
+    #joke-box {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 60%;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>😂 Random Joke Generator 😂</h1>
+  <div id="joke-box">
+    <p id="setup">Click the button to get a joke!</p>
+    <p id="punchline"></p>
+  </div>
+
+  <button onclick="getJoke()">Get Joke</button>
+  <button onclick="getJoke()">Next Joke</button>
+
+  <script>
+    // Function to fetch joke data
+    async function getJoke() {
+      try {
+        let response = await fetch("https://official-joke-api.appspot.com/random_joke");
+        if (!response.ok) {
+          throw new Error("Network error");
+        }
+        let joke = await response.json();
+        displayJoke(joke);
+      } catch (error) {
+        document.getElementById("setup").textContent = "Couldn’t fetch a joke, try again!";
+        document.getElementById("punchline").textContent = "";
+      }
+    }
+
+    // Function to update DOM with joke
+    function displayJoke(joke) {
+      document.getElementById("setup").textContent = joke.setup;
+      document.getElementById("punchline").textContent = joke.punchline;
+    }
+  </script>
+
+</body>
+</html>
